@@ -1,0 +1,24 @@
+syntax = "proto3";
+package protocol;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "protocol";
+option java_multiple_files = true;
+option java_package = "com.kone.pbdemo.protocol";
+
+
+message Para {
+  string cert = 1;
+}
+
+message Para2 {
+  bytes arr = 1;
+}
+
+
+service TestCertChain {
+  rpc getIdentityCert(google.protobuf.Empty) returns(Para) {}
+  rpc getX509CertChain(google.protobuf.Empty) returns(Para) {}
+  rpc generateSignature(Para2) returns (Para2) {}
+}
